@@ -51,6 +51,27 @@ uvicorn app.main:app --reload --port 8000
 
 Открыть Swagger: `http://localhost:8000/docs`
 
+## Запуск через Docker
+
+Требуется Docker Desktop (или Docker Engine + Docker Compose).
+
+1) Собрать и запустить:
+
+```bash
+docker-compose up --build
+```
+
+2) Или отдельно — сборка и запуск:
+
+```bash
+docker build -t rtc-testing-api .
+docker run -p 8000:8000 -v ./runs:/app/runs rtc-testing-api
+```
+
+3) API доступен по `http://localhost:8000`, Swagger — `http://localhost:8000/docs`
+
+Папка `runs/` монтируется как volume, результаты прогонов сохраняются на хосте.
+
 ## Примеры запросов
 
 ### 1) Полный suite (рекомендуется)
